@@ -1,9 +1,100 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
+@source '../views/**/*.blade.php';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-ui: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-editorial: "Newsreader", Georgia, serif;
+    --color-paper: #faf9f6;
+    --color-surface: #ffffff;
+    --color-subtle: #f2f0e8;
+    --color-ink: #242424;
+    --color-muted: #6b6b6b;
+    --color-brand: #1a8917;
+    --color-brand-hover: #156f13;
+    --color-hairline: #e6e4dd;
+    --color-outline: #dfdcd3;
+    --color-selection: #d3e7d2;
+    --text-display: 3.5rem;
+    --text-display--line-height: 4rem;
+    --text-display--letter-spacing: -0.02em;
+    --text-display-mobile: 2.25rem;
+    --text-display-mobile--line-height: 2.75rem;
+    --text-headline: 2.5rem;
+    --text-headline--line-height: 3rem;
+    --text-article: 1.3125rem;
+    --text-article--line-height: 2.125rem;
+    --text-label: 0.8125rem;
+    --text-label--line-height: 1.125rem;
+    --container-reading: 680px;
+    --shadow-card: 0 4px 16px -4px rgb(25 25 25 / 4%);
+    --shadow-popover: 0 8px 24px -6px rgb(25 25 25 / 7%);
+}
+
+@layer base {
+    body {
+        @apply bg-paper font-ui text-ink antialiased;
+    }
+    ::selection {
+        @apply bg-selection text-ink;
+    }
+    h1,
+    h2,
+    h3 {
+        font-optical-sizing: auto;
+    }
+    button,
+    summary {
+        cursor: pointer;
+    }
+    :focus-visible {
+        outline: 2px solid var(--color-brand);
+        outline-offset: 5px;
+    }
+    [id] {
+        scroll-margin-top: 7rem;
+    }
+}
+
+@layer components {
+    .page-shell {
+        @apply mx-auto w-full max-w-7xl px-5 md:px-12;
+    }
+    .button-primary {
+        @apply inline-flex items-center justify-center gap-3 rounded-full bg-brand px-5 py-2.5 text-label font-semibold text-white transition-colors hover:bg-brand-hover;
+    }
+    .button-outline {
+        @apply inline-flex items-center justify-center rounded-full border border-ink px-5 py-2.5 text-label font-medium transition-colors hover:bg-ink hover:text-white;
+    }
+    .topic-pill {
+        @apply inline-flex min-h-8 items-center rounded-full bg-subtle px-4 py-1 text-label;
+    }
+    .article-prose {
+        @apply mx-auto max-w-reading font-editorial text-article;
+    }
+    .article-prose p + p {
+        margin-top: 1.5rem;
+    }
+    .article-prose blockquote {
+        @apply my-8 border-l-2 border-brand pl-6 text-2xl italic;
+    }
+    .form-input {
+        @apply w-full rounded-lg border border-outline bg-surface px-4 py-3 text-sm placeholder:text-muted focus:border-ink;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0s !important;
+    }
+}
+
+a,
+button {
+    cursor: pointer;
 }
